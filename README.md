@@ -7,7 +7,7 @@
 3 - Tokenização das Sentenças<br>
 4 - Geração do resumo(nota para as sentenças)
 
-# Configurando ambiente
+## Configurando ambiente
 ### Poetry
 
 #### O que é?
