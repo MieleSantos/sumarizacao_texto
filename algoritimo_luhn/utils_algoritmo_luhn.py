@@ -70,6 +70,7 @@ def sumarizar(texto, top_n_palavra, distancia, quantidade_sentencas):
 
 def calcular_nota_sentenca(sentencas, palavras_importantes, distancia):
     """
+        Algoritmo de LUHN,
         Função para fazer o calculo das notas das sentencas
     Args:
         sentencas ([lista]): lista contendo as sentencas
