@@ -90,12 +90,14 @@ def calcular_nota_sentenca(sentencas, palavras_importantes, distancia):
         indice_palavra = []
         for palavras in palavras_importantes:
             try:
-                indice_palavra. append(sentenca.index(palavras))
+                indice_palavra.append(sentenca.index(palavras))
             except ValueError:
                 pass
+
         indice_palavra.sort()
         if len(indice_palavra) == 0:
             continue
+
         lista_grupos = []
         grupo = [indice_palavra[0]]
         i = 1
@@ -108,6 +110,7 @@ def calcular_nota_sentenca(sentencas, palavras_importantes, distancia):
 
             i += 1
             lista_grupos.append(grupo)
+
             nota_maxima_grupo = 0
 
             for g in lista_grupos:
