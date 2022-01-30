@@ -1,8 +1,7 @@
+import heapq
+import string
 
 import nltk
-import string
-import heapq
-
 
 nltk.download("punkt")
 nltk.download("stopwords")
@@ -22,13 +21,13 @@ def preprocessamento(texto):
 
     # removendo a pontuação
     tokens = [
-        palavra for palavra in tokens
-        if palavra not in string.punctuation
+        palavra for palavra in tokens if palavra not in string.punctuation
     ]
 
     # formatando a lista em string
-    texto_formatado = " ".join([str(elemento) for elemento in tokens
-                                if not elemento.isdigit()])
+    texto_formatado = " ".join(
+        [str(elemento) for elemento in tokens if not elemento.isdigit()]
+    )
 
     return texto_formatado
 
@@ -49,21 +48,27 @@ def sumarizar(texto, top_n_palavra, distancia, quantidade_sentencas):
     """
     sentencas_originais = [sentenca for sentenca in nltk.sent_tokenize(texto)]
     sentencas_formatadas = [
-        preprocessamento(sentenca) for sentenca in sentencas_originais]
+        preprocessamento(sentenca) for sentenca in sentencas_originais
+    ]
 
     palavra = [
-        palavra for sentenca in sentencas_formatadas
-        for palavra in nltk.word_tokenize(sentenca)]
+        palavra
+        for sentenca in sentencas_formatadas
+        for palavra in nltk.word_tokenize(sentenca)
+    ]
     frequencia = nltk.FreqDist(palavra)
 
     top_palavras = [
-        palavra[0] for palavra in frequencia.most_common(top_n_palavra)]
+        palavra[0] for palavra in frequencia.most_common(top_n_palavra)
+    ]
     notas_sentencas = calcular_nota_sentenca(
-        sentencas_formatadas, top_palavras, distancia)
+        sentencas_formatadas, top_palavras, distancia
+    )
 
     melhores_sentencas = heapq.nlargest(quantidade_sentencas, notas_sentencas)
     melhores_sentencas = [
-        sentencas_originais[i] for (nota, i) in melhores_sentencas]
+        sentencas_originais[i] for (nota, i) in melhores_sentencas
+    ]
 
     return sentencas_originais, melhores_sentencas, notas_sentencas
 
@@ -84,8 +89,8 @@ def calcular_nota_sentenca(sentencas, palavras_importantes, distancia):
     indice_sentenca = 0
 
     for sentenca in [
-        nltk.word_tokenize(sentenca.lower())
-            for sentenca in sentencas]:
+        nltk.word_tokenize(sentenca.lower()) for sentenca in sentencas
+    ]:
 
         indice_palavra = []
         for palavras in palavras_importantes:
